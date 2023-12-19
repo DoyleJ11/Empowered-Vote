@@ -1,0 +1,85 @@
+body {
+    font-family: "Canopee";
+    overflow: hidden;
+}
+
+.zip-input {
+    width: 4vw;
+    margin-right: 5px;
+    font-size: 48px;
+    text-align: center;
+    height: 12vh;
+    opacity: 0;
+}
+
+#zipForm {
+    margin-top: 25px;
+    margin-left: 80px;
+    display: flex; /* Sets the display to flex */
+    justify-content: center; /* Horizontally centers the content */
+    align-items: center; /* Vertically centers the content */
+    flex-direction: row; /* Aligns children in a row */
+    opacity: 1;
+}
+
+
+.welcome-1 {
+    opacity: 1;
+    font-size: 48px;
+}
+
+.welcome-2 {
+    opacity: 1;
+    font-size: 48px;
+}
+
+.header {
+    display: flex;
+    text-align: center;
+    position: relative;
+}
+
+.main-content {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+}
+
+.nav-text {
+    position: fixed; /* Fixed position at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 24px; /* Smaller font size for navigation text */
+    background-color: #f0f0f0; /* Background color for visibility */
+    padding: 10px 0; /* Some padding */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow for depth */
+    display: none;
+}
+
+.subtext {
+    font-size: 24px;
+    font-family: "Acid Grotesk";
+    margin: 18px;
+    opacity: 0;
+}
+
+.submit {
+    width: 80px;
+    height: 80px;
+    font-family: "Acid Grotesk";
+    background-color: white;
+    border-radius: 50%;
+    margin-left: 15px;
+    opacity: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.submit:hover {
+    transform: scale(1.1);
+}
