@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empowered Essentials</title>
+    <script src="https://kit.fontawesome.com/c1d18f80de.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <div class="nav">
+       <img src="assets/E.V_logo_color_01_SM.png">
+       <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Type here..." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="cards">
+        <div class="location-card">
+            <img src="assets/bainbridge.jpg">
+            <div class="card-info"><b>Your Zip Code:</b></div>
+            <div class="card-info">98110, Bainbridge Island, Washington (WA)</div>
+        </div>
+        <div class="long-card">
+            <img class="card-img" src="assets/vote2.png">
+            <div class="card-container">
+                <div class="card-info"><i class="fa-sharp fa-solid fa-location-dot"></i> &nbsp;<b>Location:</b> Lorem ipsum, Washington</div>
+                <div class="card-info"><i class="fa-regular fa-calendar"></i>&nbsp;<b>Date:</b> 25th. Oct - 2nd Nov. 2024</div>
+                <div class="card-info"><i class="fa-regular fa-clock"></i> &nbsp;<b>Hours:</b> 9:00 to 18:00</div>
+            </div>
+        </div>
+        <div class="long-card">
+            <img class="card-img" src="assets/vote.jpeg">
+            <div class="card-container">
+                <div class="card-info"><i class="fa-solid fa-globe"></i>&nbsp;<b>Vote.org:</b> Order your ballot from vote.org</div>
+                <div class="card-info"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Fill Ballot:</b> Fill out the ballot</div>
+                <div class="card-info"><i class="fa-regular fa-envelope"></i>&nbsp;<b>Mail Ballot:</b> Mail out your ballot!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sort-buttons-container">
+        <button class="sort-button selected" data-tab="all"><b>All</b></button>
+        <button class="sort-button" data-tab="federal"><b>Federal</b></button>
+        <button class="sort-button" data-tab="state"><b>State</b></button>
+        <button class="sort-button" data-tab="local"><b>Local</b></button>
+    </div>
+
     <div id="politiciansContainer"></div>
 
     <script src="js/dashboard.js"></script>

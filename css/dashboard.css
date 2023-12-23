@@ -1,3 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Acid Grotesk";
+    background-color: rgb(244, 244, 244);
+}
+
+.nav {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 80px;
+    display: flex; /* 1 */
+    justify-content: space-between; /* 2 */
+    padding: 1rem 2rem; /* 3 */
+}
+
+.nav input[type=text] {
+    height: 32px;
+    width: 200px;
+    text-align: center;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 20px;
+    background-color: rgb(244, 244, 244);
+    background-image: url('../assets/magnifying-glass-solid.svg');
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 20px;
+}
+
+.nav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 5px;
+    margin-right: 80px;
+    background: #00bdd6;
+    color: white;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+  }
+
+.nav .search-container {
+    float: right;
+  }
+  
+.nav img {
+    height: 50px;
+    width: auto;
+}
+
+/* #sortButtonsContainer {
+    text-align: center;
+    margin: 20px;
+}
+
+#sortButtonsContainer button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    color: black;
+    border: black 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sortButtonsContainer button:hover {
+    background-color: whitesmoke; /* Darker shade for hover effect */
+/* } */
+
+.sort-buttons-container {
+    text-align: center;
+    margin: 20px;
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.sort-button {
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 2px solid #003b62;
+    color: #003b62; /* Default text color */
+    cursor: pointer;
+}
+
+/* Style for selected tab */
+.sort-button.selected {
+    background-color: #003b62;
+    color: white;
+    border-bottom: none; /* Optional: hides the bottom border for selected tab */
+}
+
+
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -11,10 +121,16 @@
     padding: 15px;
     border-radius: 8px;
     text-align: center;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Raise card slightly on hover */
 }
 
 .card h3 {
     margin: 10px 0;
+    color: #333; /* Adjust text color to match your design */
 }
 
 .card p {
@@ -22,9 +138,60 @@
 }
 
 .card .politician-image {
-    width: 100px; /* Set a fixed width */
-    height: 100px; /* Set a fixed height */
-    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
-    border-radius: 4px; /* Optional: for rounded corners */
+    width: 150px; /* Make image responsive */
+    height: 150px; /* Adjust height automatically */
+    object-fit: cover;
+    margin-bottom: 15px; /* Space between image and text */
 }
 
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.long-card {
+    background-color: white;
+    display: flex;
+    /* border: 1px solid black; */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.card-container {
+    border-radius: 15px;
+    width: 300px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-img {
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+.card-info {
+    font-size: 16px;
+    margin: 8px;
+    color: #224180;
+}
+
+.location-card {
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    border-radius: 15px;
+}
+
+.location-card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: contain; 
+    width: 100%;
+}
