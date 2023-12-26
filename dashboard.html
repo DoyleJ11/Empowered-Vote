@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="nav">
-       <img src="assets/E.V_logo_color_01_SM.png">
+        <a href="index.html"><img src="assets/E.V_logo_color_01_SM.png"></a>
        <div class="search-container">
             <form action="/action_page.php">
                 <input type="text" placeholder="Type here..." name="search">
@@ -20,21 +20,21 @@
     <div class="cards">
         <div class="location-card">
             <img src="assets/bainbridge.jpg">
-            <div class="card-info"><b>Your Zip Code:</b></div>
-            <div class="card-info">98110, Bainbridge Island, Washington (WA)</div>
+            <div class="card-info"><b>Your Area:</b></div>
+            <div class="card-info" id="zip-code"></div>
         </div>
         <div class="long-card">
             <img class="card-img" src="assets/vote2.png">
             <div class="card-container">
-                <div class="card-info"><i class="fa-sharp fa-solid fa-location-dot"></i> &nbsp;<b>Location:</b> Lorem ipsum, Washington</div>
-                <div class="card-info"><i class="fa-regular fa-calendar"></i>&nbsp;<b>Date:</b> 25th. Oct - 2nd Nov. 2024</div>
-                <div class="card-info"><i class="fa-regular fa-clock"></i> &nbsp;<b>Hours:</b> 9:00 to 18:00</div>
+                <div class="card-info" id="location"><i class="fa-sharp fa-solid fa-location-dot"></i> &nbsp;<b>Location:</b></div>
+                <div class="card-info"><i class="fa-regular fa-calendar"></i> &nbsp;<b>Date:</b> No information yet</div>
+                <div class="card-info"><i class="fa-regular fa-clock"></i> &nbsp;<b>Hours:</b> Come back 2-4 weeks before election date</div>
             </div>
         </div>
         <div class="long-card">
             <img class="card-img" src="assets/vote.jpeg">
             <div class="card-container">
-                <div class="card-info"><i class="fa-solid fa-globe"></i>&nbsp;<b>Vote.org:</b> Order your ballot from vote.org</div>
+                <div class="card-info"><i class="fa-solid fa-globe"></i>&nbsp;<b><a href="https://www.vote.org" target=”_blank”>Vote.org:</a></b> Order your ballot from vote.org</div>
                 <div class="card-info"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Fill Ballot:</b> Fill out the ballot</div>
                 <div class="card-info"><i class="fa-regular fa-envelope"></i>&nbsp;<b>Mail Ballot:</b> Mail out your ballot!</div>
             </div>
@@ -43,13 +43,14 @@
 
     <div class="sort-buttons-container">
         <button class="sort-button selected" data-tab="all"><b>All</b></button>
-        <button class="sort-button" data-tab="federal"><b>Federal</b></button>
-        <button class="sort-button" data-tab="state"><b>State</b></button>
-        <button class="sort-button" data-tab="local"><b>Local</b></button>
+        <button class="sort-button" data-tab="country"><b>Federal</b></button>
+        <button class="sort-button" data-tab="administrativeArea1"><b>State</b></button>
+        <button class="sort-button" data-tab="administrativeArea2"><b>Local</b></button>
     </div>
 
     <div id="politiciansContainer"></div>
 
     <script src="js/dashboard.js"></script>
+    <!-- <script src="js/politician.js"></script> -->
 </body>
 </html>

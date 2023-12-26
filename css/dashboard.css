@@ -6,6 +6,7 @@
 body {
     font-family: "Acid Grotesk";
     background-color: rgb(244, 244, 244);
+    overflow-x: hidden;
 }
 
 .nav {
@@ -160,6 +161,10 @@ body {
 
 }
 
+.long-card:hover {
+    transform: scale(1.03);
+}
+
 .card-container {
     border-radius: 15px;
     width: 300px;
@@ -187,6 +192,10 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     border-radius: 15px;
+}
+
+.location-card:hover {
+    transform: scale(1.03);
 }
 
 .location-card img {

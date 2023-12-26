@@ -1,134 +1,104 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     const params = new URLSearchParams(window.location.search);
-//     const zipCode = params.get('zipcode');
-//     let currentLevelFilter = 'All'; // Default filter
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const zipCode = params.get('zipcode');
+    const sortButtons = document.querySelectorAll('.sort-button');
 
-//     // Function to create sort buttons and add event listeners
-//     function createSortButtons() {
-//         const sortOptions = ['All', 'Federal', 'State', 'Local'];
-//         const buttonsContainer = document.createElement('div');
-//         buttonsContainer.id = 'sortButtonsContainer';
+    let allPoliticians = [];
 
-//         sortOptions.forEach(option => {
-//             const button = document.createElement('button');
-//             button.textContent = option;
-//             button.addEventListener('click', () => {
-//                 currentLevelFilter = option;
-//                 fetchPoliticians(zipCode).then(renderPoliticians);
-//             });
-//             buttonsContainer.appendChild(button);
-//         });
+    async function fetchPoliticians(zipCode) {
+        const apiKey = 'AIzaSyAiGJQ1KX1fijZ9QLCQM4FC8Am9CYt_oTc';
+        const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${apiKey}&address=${zipCode}`;
 
-//         document.body.insertBefore(buttonsContainer, document.getElementById('politiciansContainer'));
-//     }
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Network response was not ok.');
+            const data = await response.json();
+            processPoliticiansData(data);
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
 
-//     // Function to sort politicians based on level
-//     function sortPoliticians(officials, offices) {
-//         if (currentLevelFilter === 'All') {
-//             return officials;
-//         }
+    function processPoliticiansData(data) {
+        allPoliticians = data.officials.map((official, index) => {
+            const office = data.offices.find(office => office.officialIndices.includes(index));
+            console.log(office.levels);
+            return {
+                name: official.name,
+                office: office.name,
+                level: office.levels,
+                photoUrl: official.photoUrl
+            };
+        });
 
-//         return officials.filter((_, index) => {
-//             const office = offices.find(office => office.officialIndices.includes(index));
-//             // Assuming that the office names contain the level type
-//             return office?.name.includes(currentLevelFilter);
-//         });
-//     }
+        fillInfoCards(data);
+        renderPoliticians(allPoliticians);
+    }
 
-//     // Function to fetch politicians' data
-//     async function fetchPoliticians(zipCode) {
-//         const apiKey = 'AIzaSyAiGJQ1KX1fijZ9QLCQM4FC8Am9CYt_oTc'; // Replace with your actual API key
-//         const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${apiKey}&address=${zipCode}`;
-    
-//         try {
-//             const response = await fetch(url);
-//             const data = await response.json();
-//             return { officials: data.officials, offices: data.offices };
-//         } catch (error) {
-//             console.error('Error fetching data: ', error);
-//         }
-//     }
-    
-//     // Function to fetch politician images
-//     async function fetchPoliticianImage(politicianName) {
-//         const apiKey = '93283553d330421c9c2dfc4f94f9557a'; // Replace with your actual API key
-//         const url = `https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(politicianName)}&count=1`;
-    
-//         try {
-//             const response = await fetch(url, {
-//                 headers: { 'Ocp-Apim-Subscription-Key': apiKey }
-//             });
-//             const data = await response.json();
-//             return data.value[0]?.contentUrl; // Get the URL of the first image
-//         } catch (error) {
-//             console.error('Error fetching image: ', error);
-//         }
-//     }
-    
-//     const delay = ms => new Promise(res => setTimeout(res, ms));
+    function renderPoliticians(politicians) {
+        const container = document.getElementById('politiciansContainer');
+        container.innerHTML = ''; // Clear existing content
+        container.className = 'card-grid'
 
-//     // Function to render politicians on the page
-//     async function renderPoliticians(data) {
-//         const { officials, offices } = data;
-//         const container = document.getElementById('politiciansContainer');
-//         container.className = 'card-grid';
-//         container.innerHTML = ''; // Clear existing cards before rendering new ones
-    
-//         const sortedOfficials = sortPoliticians(officials, offices);
-    
-//         for (let i = 0; i < sortedOfficials.length; i += 3) { // Process in batches of 3
-//             const batch = sortedOfficials.slice(i, i + 3);
-    
-//             const imagePromises = batch.map(async (politician, index) => {
-//                 const office = offices.find(office => office.officialIndices.includes(index + i));
-//                 const imageUrl = await fetchPoliticianImage(politician.name); // Fetch image
-    
-//                 return { politician, office, imageUrl };
-//             });
-    
-//             // Wait for all the image fetches in this batch to complete
-//             const results = await Promise.all(imagePromises);
-    
-//             results.forEach(({ politician, office, imageUrl }) => {
-//                 const card = document.createElement('div');
-//                 card.className = 'card';
-//                 card.innerHTML = `
-//                     <img src="${imageUrl}" alt="${politician.name}" class="politician-image">
-//                     <h3>${politician.name}</h3>
-//                     <p>${office?.name || 'Not Available'}</p>
-//                 `;
-//                 container.appendChild(card);
-//             });
-    
-//             // Wait for 1 second before proceeding to the next batch
-//             await delay(1000);
-//         }
-//     }
-    
-//     // Fetch and display data
-//     fetchPoliticians(zipCode).then(renderPoliticians);
-
-//     // Create sort buttons
-//     createSortButtons();
-// });
+        politicians.forEach(politician => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <h3>${politician.name}</h3>
+                <img class="politician-image" src="${politician.photoUrl || 'assets/placeholder.png'}" />
+                <p>${politician.office}</p>
+            `;
+            politiciansContainer.appendChild(card);
+        });
+    }
 
 
-document.querySelectorAll('.sort-button').forEach(button => {
-    button.addEventListener('click', function() {
-        // Remove selected class from all buttons
-        document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('selected'));
 
-        // Add selected class to the clicked button
-        this.classList.add('selected');
-
-        // Your sorting logic goes here
-        // Example: sortList(this.dataset.tab);
+    sortButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            sortButtons.forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+            const level = this.getAttribute('data-tab');
+            renderSortedPoliticians(level);
+        });
     });
+
+    function renderSortedPoliticians(level) {
+        const filteredPoliticians = level === 'all' 
+            ? allPoliticians 
+            : allPoliticians.filter(p => p.level && p.level.includes(level));
+        renderPoliticians(filteredPoliticians);
+    }
+    
+
+    
+    // Fetch and display data
+    fetchPoliticians(zipCode);
+    
 });
 
 
+    async function fetchPoliticianImage(politicianName) {
+        const apiKey = '93283553d330421c9c2dfc4f94f9557a'; // Replace with your actual API key
+        const url = `https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(politicianName)}&count=1`;
+    
+        try {
+            const response = await fetch(url, {
+                headers: { 'Ocp-Apim-Subscription-Key': apiKey }
+            });
+            const data = await response.json();
+            return data.value[0]?.contentUrl; // Get the URL of the first image
+        } catch (error) {
+            console.error('Error fetching image: ', error);
+        }
+    }
 
 
-// // Azure apiKey = '93283553d330421c9c2dfc4f94f9557a';
+    function fillInfoCards(data) {
+        const address = `${data.normalizedInput.city}, ${data.normalizedInput.state} ${data.normalizedInput.zip}`;
+        const addressHTML = document.getElementById('zip-code')
+        addressHTML.innerHTML = address;
 
-// // Politician apiKey = 'AIzaSyAiGJQ1KX1fijZ9QLCQM4FC8Am9CYt_oTc';
+        const location = document.getElementById('location')
+        location.innerHTML += ` ${data.normalizedInput.city}, ${data.normalizedInput.state}`
+    }

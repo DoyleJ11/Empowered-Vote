@@ -26,11 +26,13 @@ body {
 .welcome-1 {
     opacity: 1;
     font-size: 48px;
+    margin-right: 10px;
 }
 
 .welcome-2 {
     opacity: 1;
     font-size: 48px;
+    margin-right: 10px;
 }
 
 .header {
