@@ -6,51 +6,91 @@
     <title>Empowered Essentials</title>
     <script src="https://kit.fontawesome.com/c1d18f80de.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/nav.css"
 </head>
 <body>
-    <div class="nav">
-        <a href="index.html"><img src="assets/E.V_logo_color_01_SM.png"></a>
-       <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Type here..." name="search">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-    <div class="cards">
-        <div class="location-card">
-            <img src="assets/bainbridge.jpg">
-            <div class="card-info"><b>Your Area:</b></div>
-            <div class="card-info" id="zip-code"></div>
-        </div>
-        <div class="long-card">
-            <img class="card-img" src="assets/vote2.png">
-            <div class="card-container">
-                <div class="card-info" id="location"><i class="fa-sharp fa-solid fa-location-dot"></i> &nbsp;<b>Location:</b></div>
-                <div class="card-info"><i class="fa-regular fa-calendar"></i> &nbsp;<b>Date:</b> No information yet</div>
-                <div class="card-info"><i class="fa-regular fa-clock"></i> &nbsp;<b>Hours:</b> Come back 2-4 weeks before election date</div>
+      <div class="container">
+    
+        <div class="nav">
+            <a href="index.html"><img src="assets/E.V_logo_color_01_SM.png"></a>
+            <div class="overlay-toggle">
+                <p><i class="fa-solid fa-bars"></i></p>
+              </div>
+           <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Type here..." name="search">
+                    <button type="submit">Search</button>
+                </form>
             </div>
         </div>
-        <div class="long-card">
-            <img class="card-img" src="assets/vote.jpeg">
-            <div class="card-container">
-                <div class="card-info"><i class="fa-solid fa-globe"></i>&nbsp;<b><a href="https://www.vote.org" target=”_blank”>Vote.org:</a></b> Order your ballot from vote.org</div>
-                <div class="card-info"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Fill Ballot:</b> Fill out the ballot</div>
-                <div class="card-info"><i class="fa-regular fa-envelope"></i>&nbsp;<b>Mail Ballot:</b> Mail out your ballot!</div>
+        <div class="cards">
+            <div class="location-card">
+                <img src="assets/bainbridge.jpg">
+                <div class="card-info"><b>Your Area:</b></div>
+                <div class="card-info" id="zip-code"></div>
+            </div>
+            <div class="long-card">
+                <img class="card-img" src="assets/vote2.png">
+                <div class="card-container">
+                    <div class="card-info" id="location"><i class="fa-sharp fa-solid fa-location-dot"></i> &nbsp;<b>Location:</b></div>
+                    <div class="card-info"><i class="fa-regular fa-calendar"></i> &nbsp;<b>Date:</b> No information yet</div>
+                    <div class="card-info"><i class="fa-regular fa-clock"></i> &nbsp;<b>Hours:</b> Come back 2-4 weeks before election date</div>
+                </div>
+            </div>
+            <div class="long-card">
+                <img class="card-img" src="assets/vote.jpeg">
+                <div class="card-container">
+                    <div class="card-info"><i class="fa-solid fa-globe"></i>&nbsp;<b><a href="https://www.vote.org" target=”_blank”>Vote.org:</a></b> Order your ballot from vote.org</div>
+                    <div class="card-info"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Fill Ballot:</b> Fill out the ballot</div>
+                    <div class="card-info"><i class="fa-regular fa-envelope"></i>&nbsp;<b>Mail Ballot:</b> Mail out your ballot!</div>
+                </div>
             </div>
         </div>
-    </div>
+    
+        <div class="sort-buttons-container">
+            <button class="sort-button selected" data-tab="all"><b>All</b></button>
+            <button class="sort-button" data-tab="country"><b>Federal</b></button>
+            <button class="sort-button" data-tab="administrativeArea1"><b>State</b></button>
+            <button class="sort-button" data-tab="administrativeArea2"><b>Local</b></button>
+        </div>
+    
+        <div id="politiciansContainer"></div>
+      </div>
+      <div class="sidebar">
+        <div class="nav-card" id="connect-card">
+                <div class="card-title">
+                    <div>Connect</div>
+                    <div class="close-btn" id="close-btn"><i class="fa-solid fa-x"></i></div>
+                </div>
+                <div class="card-copy">
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                    impedit repellat.
+                    </p>
+                </div>
+        </div>
+        <div class="nav-card">
+          <div class="card-title">Empower</div>
+          <div class="card-copy">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+              impedit repellat, nulla quasi.
+            </p>
+          </div>
+        </div>
+        <div class="nav-card">
+          <div class="card-title">Inform</div>
+          <div class="card-copy">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+              impedit repellat.
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <div class="sort-buttons-container">
-        <button class="sort-button selected" data-tab="all"><b>All</b></button>
-        <button class="sort-button" data-tab="country"><b>Federal</b></button>
-        <button class="sort-button" data-tab="administrativeArea1"><b>State</b></button>
-        <button class="sort-button" data-tab="administrativeArea2"><b>Local</b></button>
-    </div>
-
-    <div id="politiciansContainer"></div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/dashboard.js"></script>
-    <!-- <script src="js/politician.js"></script> -->
+    <script src="js/nav.js"></script>
 </body>
 </html>

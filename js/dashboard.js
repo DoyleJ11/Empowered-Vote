@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function processPoliticiansData(data) {
         allPoliticians = data.officials.map((official, index) => {
             const office = data.offices.find(office => office.officialIndices.includes(index));
-            console.log(office.levels);
             return {
                 name: official.name,
                 office: office.name,
@@ -78,23 +77,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-    async function fetchPoliticianImage(politicianName) {
-        const apiKey = '93283553d330421c9c2dfc4f94f9557a'; // Replace with your actual API key
-        const url = `https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(politicianName)}&count=1`;
+    // async function fetchPoliticianImage(politicianName) {
+    //     const apiKey = '93283553d330421c9c2dfc4f94f9557a'; // Replace with your actual API key
+    //     const url = `https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(politicianName)}&count=1`;
     
+    //     try {
+    //         const response = await fetch(url, {
+    //             headers: { 'Ocp-Apim-Subscription-Key': apiKey }
+    //         });
+    //         const data = await response.json();
+    //         return data.value[0]?.contentUrl; // Get the URL of the first image
+    //     } catch (error) {
+    //         console.error('Error fetching image: ', error);
+    //     }
+    // }
+
+    async function fetchCityImage(cityName) {
+        const apiKey = '93283553d330421c9c2dfc4f94f9557a'; // Replace with your actual API key
+        const url = `https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(cityName)}&count=1`;
+
         try {
             const response = await fetch(url, {
                 headers: { 'Ocp-Apim-Subscription-Key': apiKey }
             });
             const data = await response.json();
-            return data.value[0]?.contentUrl; // Get the URL of the first image
+            return data.value[0].contentUrl;
         } catch (error) {
             console.error('Error fetching image: ', error);
         }
     }
 
-
     function fillInfoCards(data) {
+        fetchCityImage(data.normalizedInput.city)
         const address = `${data.normalizedInput.city}, ${data.normalizedInput.state} ${data.normalizedInput.zip}`;
         const addressHTML = document.getElementById('zip-code')
         addressHTML.innerHTML = address;
